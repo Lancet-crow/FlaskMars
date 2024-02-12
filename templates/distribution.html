@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Размещение по каютам</h2>
-{% for user in user_list %}
-    <h4>{{  }}</h4>
+{% for astronaut in astronauts %}
+    <h4>{{ astronaut }} - Каюта №{{ loop.index }} {% if loop.first %} - капитан корабля {% endif %}</h4>
 {% endfor %}
 {% endblock %}
