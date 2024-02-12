@@ -34,10 +34,17 @@ def answer():
               "ready": "True"}
     return render_template('auto_answer.html', **params)
 
+
 @app.route('/login', methods=['GET'])
 def login():
     form = LoginForm()
     return render_template('login.html', title='Аварийный доступ', form=form)
+
+
+@app.route('/distribution')
+def distribution():
+    astronauts = "Ридли Скотт", "Энди Уир", "Марк Уотни", "Венката Капур", "Тедди Сандерс", "Шон Бин"
+    return render_template('distribution.html', title='Размещение по каютам', astronauts=astronauts)
 
 
 if __name__ == '__main__':
