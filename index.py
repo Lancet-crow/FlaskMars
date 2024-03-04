@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect
 
 from data import db_session
+from data.db_session import create_session, global_init
+from data.jobs import Jobs
 from data.users import User
 from forms.user import RegisterForm
 from loginform import LoginForm
@@ -9,10 +11,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
-@app.route('/<title>')
-@app.route('/index/<title>')
-def index(title):
-    return render_template('index.html', title=title)
+@app.route('/')
+@app.route('/index')
+def index():
+    global_init('db/mars_explorer.db')
+    db_sess = create_session()
+    return render_template('index.html', journal=db_sess.query(Jobs))
 
 
 @app.route('/training/<prof>')
